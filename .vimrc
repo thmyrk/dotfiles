@@ -39,6 +39,7 @@ nmap <leader>t :CtrlPTag<CR>
 
 " --- NERDTree ---
 let NERDTreeShowHidden=1
+nmap <C-n> :NERDTree<CR>
 
 " --- Syntastic ---
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
@@ -98,7 +99,6 @@ set autoread
 " Mappings
 imap jj <Esc>
 nmap <C-g> :TagbarToggle<CR>
-nmap <C-n> :NERDTree<CR>
 nmap <leader>s :cal cursor(0, len(getline('.')) / 2)<CR>
 nmap <leader>a :cal cursor(0, len(getline('.')) / 4)<CR>
 nmap <leader>d :cal cursor(0, (len(getline('.')) / 4) * 3)<CR>
