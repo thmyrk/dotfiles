@@ -41,7 +41,7 @@ nmap <leader>t :CtrlPTag<CR>
 let NERDTreeShowHidden=1
 
 " --- Syntastic ---
-" let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
 " --- Gruvbox ---
 colorscheme gruvbox
