@@ -35,6 +35,7 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 let g:ctrlp_map = '<leader>f'
+nmap <leader>t :CtrlPTag<CR>
 
 " --- NERDTree ---
 let NERDTreeShowHidden=1
