@@ -57,6 +57,9 @@ let g:rainbow_active = 1
 filetype plugin indent on
 syntax enable
 
+" --- terminal emulator ---
+tnoremap jj <C-\><C-n>
+
 set number
 " set relativenumber
 set autoindent
