@@ -60,6 +60,10 @@ syntax enable
 " --- terminal emulator ---
 tnoremap jj <C-\><C-n>
 
+" --- tabs ---
+nnoremap <leader>w gT
+nnoremap <leader>e gt
+
 set number
 " set relativenumber
 set autoindent
