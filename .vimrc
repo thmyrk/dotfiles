@@ -98,7 +98,7 @@ endif
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
-" set colorcolumn=120
+set colorcolumn=150
 
 " Line Wrapping
 set nowrap
