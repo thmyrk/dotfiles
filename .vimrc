@@ -26,6 +26,7 @@ Plugin 'easymotion'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'luochen1990/rainbow'
 Plugin 'tommcdo/vim-exchange'
+Plugin 'tomlion/vim-solidity'
 
 call vundle#end()
 
@@ -43,6 +44,7 @@ nmap <C-n> :NERDTree<CR>
 
 " --- Syntastic ---
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_solidity_checkers = ['solc', 'solium']
 
 " --- Gruvbox ---
 colorscheme gruvbox
