@@ -115,6 +115,7 @@ nmap <C-g> :TagbarToggle<CR>
 nmap <leader>s :cal cursor(0, len(getline('.')) / 2)<CR>
 nmap <leader>a :cal cursor(0, len(getline('.')) / 4)<CR>
 nmap <leader>d :cal cursor(0, (len(getline('.')) / 4) * 3)<CR>
+nnoremap <CR> :noh<CR>
 
 function! <SID>StripTrailingWhitespaces()
   if mode() == 'n'
