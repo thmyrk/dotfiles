@@ -65,6 +65,10 @@ tnoremap jj <C-\><C-n>
 " --- tabs ---
 nnoremap <leader>w gT
 nnoremap <leader>e gt
+nnoremap <leader>r0 :tabm 0<CR>
+nnoremap <leader>r1 :tabm 1<CR>
+nnoremap <leader>r2 :tabm 2<CR>
+nnoremap <leader>r3 :tabm 3<CR>
 
 set number
 " set relativenumber
