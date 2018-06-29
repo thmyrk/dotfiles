@@ -27,6 +27,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'luochen1990/rainbow'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tomlion/vim-solidity'
+Plugin 't9md/vim-ruby-xmpfilter'
 
 call vundle#end()
 
@@ -58,6 +59,15 @@ let g:rainbow_active = 1
 
 filetype plugin indent on
 syntax enable
+
+" --- Seeing is believing ---
+let g:xmpfilter_cmd = "seeing_is_believing"
+autocmd FileType ruby nmap <buffer> <leader>z <Plug>(seeing_is_believing-mark)
+autocmd FileType ruby xmap <buffer> <leader>z <Plug>(seeing_is_believing-mark)
+autocmd FileType ruby nmap <buffer> <leader>c <Plug>(seeing_is_believing-clean)
+autocmd FileType ruby xmap <buffer> <leader>c <Plug>(seeing_is_believing-clean)
+autocmd FileType ruby nmap <buffer> <leader>x <Plug>(seeing_is_believing-run)
+autocmd FileType ruby xmap <buffer> <leader>x <Plug>(seeing_is_believing-run)
 
 " --- terminal emulator ---
 tnoremap jj <C-\><C-n>
