@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails ruby rake github bundler cp npm postgres rvm ssh-agent sudo)
+plugins=(git rails ruby rake github bundler cp npm postgres ssh-agent sudo zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,16 +89,10 @@ alias ..3='cd ../../..'
 alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
 alias gk='gitk --all'
+alias gi='git citool'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export NVM_DIR="/home/arclite/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # extends regexes; allows for moving all files except specified
 setopt ksh_glob
-
-export ANDROID_HOME=~/Android/Sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
