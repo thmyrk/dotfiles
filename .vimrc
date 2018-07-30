@@ -4,8 +4,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " --- Vundle ---
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin("~/.config/nvim/bundle/")
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
@@ -126,6 +126,7 @@ nmap <leader>s :cal cursor(0, len(getline('.')) / 2)<CR>
 nmap <leader>a :cal cursor(0, len(getline('.')) / 4)<CR>
 nmap <leader>d :cal cursor(0, (len(getline('.')) / 4) * 3)<CR>
 nnoremap <CR> :noh<CR>
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 function! <SID>StripTrailingWhitespaces()
   if mode() == 'n'
