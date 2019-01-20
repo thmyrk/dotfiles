@@ -28,6 +28,9 @@ Plugin 'luochen1990/rainbow'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tomlion/vim-solidity'
 Plugin 't9md/vim-ruby-xmpfilter'
+Plugin 'elmcast/elm-vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-endwise'
 
 call vundle#end()
 
@@ -46,6 +49,11 @@ nmap <C-n> :NERDTree<CR>
 " --- Syntastic ---
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_solidity_checkers = ['solc', 'solium']
+
+let g:elm_syntastic_show_warnings = 1
+
+" --- elm-vim ---
+let g:elm_setup_keybindings = 0
 
 " --- Gruvbox ---
 colorscheme gruvbox
