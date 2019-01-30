@@ -31,6 +31,9 @@ Plugin 't9md/vim-ruby-xmpfilter'
 Plugin 'elmcast/elm-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-endwise'
+Plugin 'posva/vim-vue'
+Plugin 'alvan/vim-closetag'
+Plugin 'cakebaker/scss-syntax.vim'
 
 call vundle#end()
 
@@ -76,6 +79,28 @@ autocmd FileType ruby nmap <buffer> <leader>c <Plug>(seeing_is_believing-clean)
 autocmd FileType ruby xmap <buffer> <leader>c <Plug>(seeing_is_believing-clean)
 autocmd FileType ruby nmap <buffer> <leader>x <Plug>(seeing_is_believing-run)
 autocmd FileType ruby xmap <buffer> <leader>x <Plug>(seeing_is_believing-run)
+
+" --- vim-closetag ---
+" These are the file extensions where this plugin is enabled.
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
+
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" These are the file types where this plugin is enabled.
+let g:closetag_filetypes = 'html,xhtml,phtml,vue'
+
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Shortcut for closing tags, default is '>'
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<leader>>'
 
 " --- terminal emulator ---
 tnoremap jj <C-\><C-n>
