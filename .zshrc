@@ -92,7 +92,13 @@ alias gk='gitk --all'
 alias gi='git citool'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
 # extends regexes; allows for moving all files except specified
 setopt ksh_glob
+
+export EDITOR="nvim"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+unset rvm_path
+export PATH="$PATH:$HOME/.rvm/bin"
+source ~/.rvm/scripts/rvm
