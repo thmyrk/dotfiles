@@ -34,6 +34,9 @@ Plugin 'tpope/vim-endwise'
 Plugin 'posva/vim-vue'
 Plugin 'alvan/vim-closetag'
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'rust-lang/rust.vim'
+Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()
 
