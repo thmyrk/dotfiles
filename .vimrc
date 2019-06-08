@@ -41,6 +41,7 @@ Plugin 'kchmck/vim-coffee-script'
 call vundle#end()
 
 " --- CtrlP ---
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
