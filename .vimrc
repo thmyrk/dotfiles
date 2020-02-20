@@ -31,6 +31,7 @@ Plugin 'luochen1990/rainbow'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tomlion/vim-solidity'
 Plugin 't9md/vim-ruby-xmpfilter'
+Plugin 'tpope/vim-rails'
 Plugin 'elmcast/elm-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-endwise'
@@ -70,7 +71,7 @@ colorscheme gruvbox
 set background=dark
 
 " --- VimDevicons ---
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
+set guifont=DroidSansMono\ Nerd\ Font:h11
 
 " --- Rainbow ---
 let g:rainbow_active = 1

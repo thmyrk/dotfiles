@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails ruby rake github bundler cp npm postgres ssh-agent sudo zsh-nvm)
+plugins=(git github bundler cp npm postgres sudo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,14 +91,9 @@ alias ..5='cd ../../../../..'
 alias gk='gitk --all'
 alias gi='git citool'
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
 
 # extends regexes; allows for moving all files except specified
 setopt ksh_glob
 
 export EDITOR="nvim"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-unset rvm_path
-export PATH="$PATH:$HOME/.rvm/bin"
-source ~/.rvm/scripts/rvm
