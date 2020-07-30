@@ -160,6 +160,10 @@ set showbreak=…
 set autowrite
 set autoread
 
+" Fold
+set foldmethod=syntax
+set nofoldenable
+
 " Mappings
 imap jj <Esc>
 nmap <C-g> :TagbarToggle<CR>
