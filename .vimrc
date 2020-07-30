@@ -17,7 +17,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mhinz/vim-startify'
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
+Plugin 'dense-analysis/ale'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
@@ -57,14 +58,7 @@ nmap <leader>t :CtrlPTag<CR>
 let NERDTreeShowHidden=1
 nmap <C-n> :NERDTree<CR>
 
-" --- Syntastic ---
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_solidity_checkers = ['solc', 'solium']
-
-let g:elm_syntastic_show_warnings = 1
-
-" --- elm-vim ---
-let g:elm_setup_keybindings = 0
+" --- Ale ---
 
 " --- Gruvbox ---
 colorscheme gruvbox
