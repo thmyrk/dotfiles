@@ -1,0 +1,5 @@
+[user]
+	name = Przemysław Piotrowski
+	email = przemyslaw.piotrowski@atteo.com
+[merge]
+	conflictstyle = diff3
