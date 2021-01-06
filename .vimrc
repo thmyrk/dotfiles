@@ -3,6 +3,9 @@ let mapleader = ","
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Explicitly set shell to bash. Fixes issues with fish (non-posix)
+set shell="bash"
+
 " --- Vundle ---
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin("~/.config/nvim/bundle/")
