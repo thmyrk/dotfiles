@@ -19,6 +19,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mhinz/vim-startify'
 " Plugin 'vim-syntastic/syntastic'
 Plugin 'dense-analysis/ale'
+" Plugin 'neoclide/coc.nvim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
@@ -42,6 +43,8 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'rust-lang/rust.vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
 
 call vundle#end()
 
@@ -59,6 +62,7 @@ let NERDTreeShowHidden=1
 nmap <C-n> :NERDTree<CR>
 
 " --- Ale ---
+let g:ale_linters = {'ruby': ['ruby', 'rubocop', 'brakeman', 'debride', 'reek', 'solargraph', 'standardrb'] }
 
 " --- Gruvbox ---
 colorscheme gruvbox
