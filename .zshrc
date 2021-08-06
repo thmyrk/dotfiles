@@ -2,7 +2,7 @@
 # If you come from bash you might have to change your $PATH.
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/arclite/.oh-my-zsh
+export ZSH="/Users/przemyslawpiotrowski/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -91,9 +91,22 @@ alias ..5='cd ../../../../..'
 alias gk='gitk --all'
 alias gi='git citool'
 
+alias gitp="pass ssh --clip && git push origin HEAD"
+alias gitf="pass ssh --clip && git fetch"
+
+gitmove ()
+{
+  git branch -f $1 && git checkout $1
+}
+
+# workaround for macos gitk crash
+alias gitk="sed -i .bak 's/zoomed/normal/g' ~/.config/git/gitk && /usr/local/bin/gitk"
+
 export PATH="$HOME/.rbenv/shims:$PATH"
 
 # extends regexes; allows for moving all files except specified
 setopt ksh_glob
 
 export EDITOR="nvim"
+export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
