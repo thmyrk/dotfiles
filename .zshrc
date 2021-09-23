@@ -92,6 +92,7 @@ alias gk='gitk --all'
 alias gi='git citool'
 
 alias gitp="pass ssh --clip && git push origin HEAD"
+alias gitpf="pass ssh --clip && git push origin HEAD --force-with-lease"
 alias gitf="pass ssh --clip && git fetch"
 
 gitmove ()
@@ -110,3 +111,4 @@ setopt ksh_glob
 export EDITOR="nvim"
 export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
