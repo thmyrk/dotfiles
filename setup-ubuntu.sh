@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ### General packages
 sudo apt-get install -y sudo curl pass
@@ -38,10 +38,10 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 sudo groupadd docker
-sudo usermod -aG docker $USER
-newgrp docker
+sudo usermod -aG docker docker
+# newgrp docker
 
-docker run hello-world
+# docker run hello-world
 
 ### Fish related setup steps
 
