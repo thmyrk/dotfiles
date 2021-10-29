@@ -3,50 +3,47 @@ let mapleader = ","
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" Explicitly set shell to bash. Fixes issues with fish (non-posix)
-set shell="bash"
+" --- Vim plug ---
+call plug#begin("~/.config/nvim/bundle/")
 
-" --- Vundle ---
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin("~/.config/nvim/bundle/")
+Plug 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mhinz/vim-startify'
+" Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
+" Plug 'neoclide/coc.nvim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
+Plug 'kshenoy/vim-signature'
+Plug 'itchyny/lightline.vim'
+Plug 'morhetz/gruvbox'
+Plug 'easymotion/vim-easymotion'
+Plug 'ryanoasis/vim-devicons'
+Plug 'luochen1990/rainbow'
+Plug 'tommcdo/vim-exchange'
+Plug 'tomlion/vim-solidity'
+Plug 't9md/vim-ruby-xmpfilter'
+Plug 'tpope/vim-rails'
+Plug 'elmcast/elm-vim'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-endwise'
+Plug 'posva/vim-vue'
+Plug 'alvan/vim-closetag'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'rust-lang/rust.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'dag/vim-fish'
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'mhinz/vim-startify'
-" Plugin 'vim-syntastic/syntastic'
-Plugin 'dense-analysis/ale'
-" Plugin 'neoclide/coc.nvim'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'majutsushi/tagbar'
-Plugin 'kshenoy/vim-signature'
-Plugin 'itchyny/lightline.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'easymotion'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'luochen1990/rainbow'
-Plugin 'tommcdo/vim-exchange'
-Plugin 'tomlion/vim-solidity'
-Plugin 't9md/vim-ruby-xmpfilter'
-Plugin 'tpope/vim-rails'
-Plugin 'elmcast/elm-vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'tpope/vim-endwise'
-Plugin 'posva/vim-vue'
-Plugin 'alvan/vim-closetag'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'rust-lang/rust.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
-
-call vundle#end()
+call plug#end()
 
 " --- CtrlP ---
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules
