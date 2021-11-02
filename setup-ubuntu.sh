@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### General packages
-sudo apt-get install -y sudo curl pass
+sudo apt-get install -y sudo curl pass net-tools
 
 ### Fish
 sudo apt-get install -y fish
@@ -46,3 +46,28 @@ sudo usermod -aG docker docker
 ### Fish related setup steps
 
 fish ~/workspace/dotfiles/setup-ubuntu.fish
+
+### Kubernetes
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+echo "$(<kubectl.sha256) kubectl" | sha256sum --check
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+kubectl version --client
+
+### Azure CLI
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+### Redis
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+make test
+sudo cp src/redis-server /usr/local/bin/
+sudo cp src/redis-cli /usr/local/bin/
+cd ..
+
+### DB
+sudo apt-get install -y mysql-server libmysqlclient-dev
