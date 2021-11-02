@@ -26,7 +26,7 @@ nvim +PlugInstall +q +q
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 mkdir -p ~/.config/fish/completions; ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
 
-### Docker
+### Docker & docker-compose
 sudo apt-get install -y ca-certificates curl gnupg lsb-release
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -42,6 +42,9 @@ sudo usermod -aG docker docker
 # newgrp docker
 
 # docker run hello-world
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
 ### Fish related setup steps
 
