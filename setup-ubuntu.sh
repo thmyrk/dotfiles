@@ -1,7 +1,16 @@
 #!/bin/bash
 
 ### General packages
-sudo apt-get install -y sudo curl pass net-tools
+sudo apt-get install -y sudo curl pass net-tools jq
+
+## Python
+ sudo apt install python3-testresources
+ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+ python3 get-pip.py
+
+ ### Chrome
+ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+ sudo apt install ./google-chrome-stable_current_amd64.deb
 
 ### Fish
 sudo apt-get install -y fish
@@ -32,6 +41,17 @@ cd ~/workspace/dotfiles
 ### Asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 mkdir -p ~/.config/fish/completions; ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+
+### Ctags
+ mkdir -p ~/workspace/tools
+ curl https://kumisystems.dl.sourceforge.net/project/ctags/ctags/5.8/ctags-5.8.tar.gz -o ~/workspace/tools/ctags.tar.gz
+ cd ~/workspace/tools
+ tar -xf ctags.tar.gz
+ cd ctags-5.8
+ ./configure
+ make
+ sudo ln -s ~/workspace/tools/ctags-5.8/ctags /usr/bin/ctags
+ cd ~/workspace/dotfiles
 
 ### Docker & docker-compose
 sudo apt-get install -y ca-certificates curl gnupg lsb-release
@@ -69,6 +89,19 @@ kubectl version --client
 ### Azure CLI
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
+### AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+sudo dpkg -i session-manager-plugin.deb
+
+# AWS EB
+sudo apt-get install -y build-essential zlib1g-dev libssl-dev libncurses-dev libffi-dev libsqlite3-dev libreadline-dev libbz2-dev
+git clone git@github.com:aws/aws-elastic-beanstalk-cli-setup.git
+./aws-elastic-beanstalk-cli-setup/scripts/bundled_installer
+
 ### Redis
 wget http://download.redis.io/redis-stable.tar.gz
 tar xvzf redis-stable.tar.gz
@@ -81,3 +114,19 @@ cd ..
 
 ### DB
 sudo apt-get install -y mysql-server libmysqlclient-dev
+
+### Git pre-commit
+pip install pre-commit
+pre-commit --version
+
+### TablePlus
+# Add TablePlus GPG key
+wget -qO - http://deb.tableplus.com/apt.tableplus.com.gpg.key | sudo apt-key add -
+
+# Add TablePlus repo
+sudo add-apt-repository "deb [arch=amd64] https://deb.tableplus.com/debian tableplus main"
+
+# Install
+sudo apt-get update
+sudo apt-get install -y tableplus
+
