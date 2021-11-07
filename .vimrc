@@ -129,7 +129,7 @@ set display+=lastline
 set encoding=utf-8
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set formatoptions+=j
-set shell=/bin/zsh
+set shell=/usr/bin/fish
 set sessionoptions-=options
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
   set t_Co=16
