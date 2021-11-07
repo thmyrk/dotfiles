@@ -60,9 +60,6 @@ let g:ale_linters = {'ruby': ['ruby', 'rubocop', 'brakeman', 'debride', 'reek', 
 colorscheme gruvbox
 set background=dark
 
-" --- VimDevicons ---
-set guifont=DroidSansMono\ Nerd\ Font:h11
-
 " --- Rainbow ---
 let g:rainbow_active = 1
 

@@ -22,6 +22,13 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 nvim +PlugInstall +q +q
 
+### Fonts
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf -o 'Droid Sans Mono Nerd Font Complete.otf'
+echo '### Remember to manually set the font in your terminal to Droid! ###'
+cd ~/workspace/dotfiles
+
 ### Asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 mkdir -p ~/.config/fish/completions; ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
