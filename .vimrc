@@ -9,9 +9,6 @@ call plug#begin("~/.config/nvim/bundle/")
 Plug 'VundleVim/Vundle.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mhinz/vim-startify'
 " Plug 'vim-syntastic/syntastic'
 Plug 'dense-analysis/ale'
@@ -38,6 +35,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'dag/vim-fish'
 Plug 'gcmt/taboo.vim'
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 
 call plug#end()
 
@@ -50,9 +50,8 @@ endif
 let g:ctrlp_map = '<leader>f'
 nmap <leader>t :CtrlPTag<CR>
 
-" --- NERDTree ---
-let NERDTreeShowHidden=1
-nmap <C-n> :NERDTree<CR>
+" --- Fern ---
+nmap <C-n> :Fern . -reveal=% -drawer<CR>
 
 " --- Ale ---
 let g:ale_linters = {'ruby': ['ruby', 'rubocop', 'brakeman', 'debride', 'reek', 'solargraph', 'standardrb'] }
