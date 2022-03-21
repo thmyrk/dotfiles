@@ -15,7 +15,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mhinz/vim-startify'
 " Plug 'vim-syntastic/syntastic'
 Plug 'dense-analysis/ale'
-" Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
@@ -97,6 +97,27 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
 
+" --- coc ---
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=750
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
 " --- terminal emulator ---
 tnoremap jj <C-\><C-n>
 
