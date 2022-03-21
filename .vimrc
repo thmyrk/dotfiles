@@ -37,6 +37,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'dag/vim-fish'
+Plug 'gcmt/taboo.vim'
 
 call plug#end()
 
@@ -97,6 +98,13 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
 
+" --- taboo ---
+cabbrev tr TabooRename
+set sessionoptions+=tabpages,globals
+
+let g:taboo_tab_format = '%N %f%m '
+let g:taboo_renamed_tab_format = '%N [%l]%m '
+
 " --- coc ---
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -118,16 +126,33 @@ endfunction
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
+
 " --- terminal emulator ---
 tnoremap jj <C-\><C-n>
 
 " --- tabs ---
 nnoremap <leader>w gT
 nnoremap <leader>e gt
+nnoremap <leader>0 0gt
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
 nnoremap <leader>r0 :tabm 0<CR>
 nnoremap <leader>r1 :tabm 1<CR>
 nnoremap <leader>r2 :tabm 2<CR>
 nnoremap <leader>r3 :tabm 3<CR>
+nnoremap <leader>r4 :tabm 4<CR>
+nnoremap <leader>r5 :tabm 5<CR>
+nnoremap <leader>r6 :tabm 6<CR>
+nnoremap <leader>r7 :tabm 7<CR>
+nnoremap <leader>r8 :tabm 8<CR>
+nnoremap <leader>r9 :tabm 9<CR>
 
 set number
 " set relativenumber
