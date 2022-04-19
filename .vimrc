@@ -8,6 +8,7 @@ call plug#begin("~/.config/nvim/bundle/")
 
 Plug 'VundleVim/Vundle.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-startify'
 " Plug 'vim-syntastic/syntastic'
@@ -38,15 +39,14 @@ Plug 'gcmt/taboo.vim'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 
 " --- CtrlP ---
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_map = '<leader>f'
 nmap <leader>t :CtrlPTag<CR>
 
@@ -125,6 +125,10 @@ endfunction
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
+
+" Silver searcher; Ag; Ack
+let g:ackprg = 'ag --nogroup --column'
+nmap <leader>g :Ack!<CR>
 
 " --- terminal emulator ---
 tnoremap jj <C-\><C-n>

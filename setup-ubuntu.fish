@@ -20,3 +20,9 @@ asdf global node latest
 
 ### Rails related requirements
 # sudo apt-get install install libpq-dev
+
+### Fzf, The_silver_searcher
+sudo apt-get install fzf
+echo fzf_key_bindings > ~/.config/fish/functions/fish_user_key_bindings.fish
+
+sudo apt-get install silversearcher-ag
