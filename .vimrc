@@ -129,6 +129,7 @@ nmap <silent> gr <Plug>(coc-references)
 " Silver searcher; Ag; Ack
 let g:ackprg = 'ag --nogroup --column'
 nmap <leader>g :Ack!<CR>
+nmap <leader>h :Ack<Space>
 
 " --- terminal emulator ---
 tnoremap jj <C-\><C-n>
