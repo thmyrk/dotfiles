@@ -126,6 +126,9 @@ endfunction
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
+" Fern
+let g:fern#default_hidden = 1
+
 " Silver searcher; Ag; Ack
 let g:ackprg = 'ag --nogroup --column'
 nmap <leader>g :Ack!<CR>
