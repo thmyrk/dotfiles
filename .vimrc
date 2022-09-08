@@ -22,7 +22,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'easymotion/vim-easymotion'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 Plug 'luochen1990/rainbow'
 Plug 'tommcdo/vim-exchange'
 Plug 't9md/vim-ruby-xmpfilter'
@@ -39,6 +39,8 @@ Plug 'gcmt/taboo.vim'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/nerdfont.vim'
 Plug 'mileszs/ack.vim'
 
 call plug#end()
@@ -128,6 +130,7 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Fern
 let g:fern#default_hidden = 1
+let g:fern#renderer = "nerdfont"
 
 " Silver searcher; Ag; Ack
 let g:ackprg = 'ag --nogroup --column'
