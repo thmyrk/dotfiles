@@ -1,0 +1,7 @@
+- name: Install fzf and silver-searcher on Redhat
+  dnf:
+    name:
+      - fzf
+      - the_silver_searcher
+  become: yes
+  when: "ansible_os_family == 'RedHat'"

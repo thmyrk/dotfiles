@@ -1,0 +1,28 @@
+- name: Install prerequisites on Redhat
+  dnf:
+    name: dnf-plugins-core
+    state: present
+  when: "ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Add repo in Dnf on Redhat
+  shell: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+  when: "ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Install docker on Redhat
+  dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+      - docker-compose
+    state: present
+  when: "ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Start docker service
+  systemd:
+    state: started
+    name: docker

@@ -1,0 +1,58 @@
+- name: Gather the package facts
+  package_facts:
+
+- name: Install Neovim on Redhat
+  dnf: "{{ neovim }}"
+  when: "neovim not in ansible_facts.packages and ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Install Powerline fonts on Redhat
+  dnf: "{{ powerlinefonts }}"
+  when: "powerlinefonts not in ansible_facts.packages and ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Check if vim-plug is installed
+  stat:
+    path: ~/.local/share/nvim/site/autoload/plug.vim
+  register: vimplug
+
+- name: Install vim-plug
+  shell: sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  when: vimplug.stat.exists == False
+
+# - name: Run Neovim configuration
+#   shell:
+#     cmd: nvim +'source nvim_config.vim'
+#     executable: /usr/bin/fish
+
+- name: Check if DroidSansMono Nerd Font is installed
+  stat:
+    path: '~/.fonts/DroidSansMono Nerd Font Complete Mono.otf'
+  register: droidsansmono
+
+- name: Download DroidSansMono Nerd Font
+  shell:
+    cmd: sh -c 'curl -fLo "DroidSansMono Nerd Font Complete Mono.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf'
+    executable: /usr/bin/fish
+  when: droidsansmono.stat.exists == False
+
+- name: Ensure DroidSansMono directory exists
+  file:
+    path: ~/.fonts
+    state: directory
+
+- name: Install DroidSansMono Nerd Font
+  shell:
+    cmd: mv 'DroidSansMono Nerd Font Complete Mono.otf' ~/.fonts
+    executable: /usr/bin/fish
+  when: droidsansmono.stat.exists == False
+
+- name: Update font cache
+  shell:
+    cmd: fc-cache
+    executable: /usr/bin/fish
+  when: droidsansmono.stat.exists == False
+
+- name: Inform about changing terminal font
+  debug:
+    msg: "### You need to change your terminal font to DroidSansMono in order to use NerdFonts ###"

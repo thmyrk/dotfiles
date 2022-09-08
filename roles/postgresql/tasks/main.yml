@@ -1,0 +1,25 @@
+- name: Install postgresql
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - postgresql
+      - postgresql-contrib
+      - pgadmin3
+  become: yes
+
+- name: Save user name
+  shell: echo $USER
+  register: current_user
+
+- name: Check whether user role exists
+  shell: 'psql -c "\dg" | grep {{ current_user.stdout }} | cat'
+  register: user_role
+  become: yes
+  become_user: postgres
+
+- name: Create postgres user role
+  shell: createuser --createdb --superuser {{ current_user.stdout }}
+  become: yes
+  become_user: postgres
+  when: user_role.stdout == ""

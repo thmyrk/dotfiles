@@ -1,0 +1,22 @@
+- name: Install Fish on Redhat
+  dnf:
+    name: fish
+  when: "ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Change shell to fish
+  user:
+    name: "{{ current_user }}"
+    shell: /usr/bin/fish
+  become: yes
+
+- name: Ensure fish config directory exists
+  file:
+    path: ~/.config/fish/
+    state: directory
+
+- name: Link Fish config
+  file:
+    src: ~/Workspace/dotfiles/config.fish
+    dest: ~/.config/fish/config.fish
+    state: link

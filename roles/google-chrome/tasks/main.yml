@@ -1,0 +1,5 @@
+- name: Install google chrome stable on Redhat
+  dnf:
+    name: google-chrome-stable
+  when: "ansible_os_family == 'RedHat'"
+  become: yes

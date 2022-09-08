@@ -1,0 +1,75 @@
+- name: Clone Asdf
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: ~/.asdf
+    clone: yes
+    refspec: v0.10.2
+
+- name: Ensure Fish completions path exists
+  file:
+    path: ~/.config/fish/completions
+    state: directory
+
+- name: Link Asdf completions
+  file:
+    src: ~/.asdf/completions/asdf.fish
+    dest: ~/.config/fish/completion
+    state: link
+
+- name: Install NodeJS dependencies on Redhat
+  dnf:
+    name:
+      - dirmngr
+      - gpg
+      - curl
+      - gawk
+  when: "ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Check if NodeJS plugin has been added
+  shell:
+    cmd: asdf plugin list | grep -c nodejs; true
+    executable: /usr/bin/fish
+  register: nodejsplugin
+
+- name: Add NodeJS plugin to Asdf
+  shell:
+    cmd: asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+    executable: /usr/bin/fish
+  when: nodejsplugin.stdout == "0"
+
+- name: Check if NodeJS is installed
+  shell:
+    cmd: asdf current 2>&1 | grep -cE "nodejs.*No version is set"; true
+    executable: /usr/bin/fish
+  register: nodejs
+
+- name: Install latest NodeJS
+  shell:
+    cmd: asdf install nodejs latest
+    executable: /usr/bin/fish
+  when: nodejs.stdout != "0"
+
+- name: Set global NodeJS
+  shell:
+    cmd: asdf global nodejs latest
+    executable: /usr/bin/fish
+  when: nodejs.stdout != "0"
+
+- name: Check if Ruby plugin has been added
+  shell:
+    cmd: asdf plugin list | grep -c ruby; true
+    executable: /usr/bin/fish
+  register: rubyplugin
+
+- name: Add Ruby plugin to Asdf
+  shell:
+    cmd: asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+    executable: /usr/bin/fish
+  when: rubyplugin.stdout == "0"
+
+# - name: Check if Ruby is installed
+#   shell:
+#     cmd: asdf current 2>&1 | grep -cE "ruby.*No version is set"; true
+#     executable: /usr/bin/fish
+#   register: nodejs

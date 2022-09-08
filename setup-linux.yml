@@ -1,0 +1,20 @@
+- hosts: localhost
+  tasks:
+    - name: "Display os family"
+      debug:
+        msg: "Ansible OS family: {{ ansible_os_family }}"
+- hosts: localhost
+  pre_tasks:
+    - set_fact:
+        current_user: "{{ ansible_user_id }}"
+  vars_files:
+    - "vars/common.yml"
+    - [ "vars/{{ ansible_os_family }}.yml" ]
+  roles:
+    - base
+    # - fish
+    # - silver-searcher
+    # - google-chrome
+    # - docker
+    # - asdf
+    # - neovim

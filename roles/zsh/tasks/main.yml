@@ -1,0 +1,19 @@
+- name: Install zsh
+  apt:
+    name: zsh
+  become: yes
+
+- name: Check whether zsh is the default shell
+  shell: 'getent passwd $LOGNAME | cut -d: -f7'
+  register: default_shell
+
+- name: Install oh my zsh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  when: '"zsh" not in default_shell.stdout'
+
+- name: Create link for .zshrc config file
+  file:
+    dest: ~/.zshrc
+    src: ~/workspace/dotfiles/.zshrc
+    force: yes
+    state: link

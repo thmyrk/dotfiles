@@ -1,0 +1,71 @@
+- name: Install common tools on Redhat
+  dnf:
+    name:
+      - curl
+      - wget
+      - htop
+      - pass
+      - jq
+      - unzip
+      - git
+      - git-gui
+      - qbittorrent
+  when: "ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Register repolist
+  shell: dnf repolist enabled | grep -c rpmfusion; true
+  register: repolist
+  when: "ansible_os_family == 'RedHat'"
+
+- name: Register fedora version
+  shell: rpm -E %fedora
+  register: fedoraversion
+  when: "repolist.stdout == '0' and ansible_os_family == 'RedHat'"
+
+- name: Enable RPMFusion
+  shell: "dnf install -y --refresh https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedoraversion.stdout }}.noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedoraversion.stdout }}.noarch.rpm"
+  become: yes
+  when: "repolist.stdout == '0' and ansible_os_family == 'RedHat'"
+  register: output
+
+- name: Install Accelerated video decoding packages
+  dnf:
+    name:
+      - libva
+      - libva-utils
+  when: "ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Install multimedia
+  dnf:
+    name:
+      - '@multimedia'
+      - '@sound-and-video'
+  become: yes
+  when: "ansible_os_family == 'RedHat'"
+
+- name: Import repository key
+  rpm_key:
+    key: https://downloads.1password.com/linux/keys/1password.asc
+  become: yes
+  when: "ansible_os_family == 'RedHat'"
+
+- name: Add yum repository for 1password
+  yum_repository:
+    baseurl: https://downloads.1password.com/linux/rpm/stable/$basearch
+    name: 1password
+    description: 1Password Stable Channel
+    enabled: yes
+    gpgcheck: yes
+    repo_gpgcheck: yes
+    gpgkey: https://downloads.1password.com/linux/keys/1password.asc
+  become: yes
+  when: "ansible_os_family == 'RedHat'"
+
+- name: Install 1password
+  dnf:
+    name: 1password
+    enablerepo: 1password
+  become: yes
+  when: "ansible_os_family == 'RedHat'"
