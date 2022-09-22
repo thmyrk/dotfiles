@@ -8,7 +8,7 @@ Prerequisites:
 * git cloned this repo
 * `ansible-galaxy collection install kewlfft.aur` for Archlinux os family
 
-Run `ansible-playbook -K setup-linux.yml`
+Run `ansible-playbook -K ansible/setup-linux.yml`
 
 Things you have to do manually:
 * terminal / workspaces keyboard shortcuts
