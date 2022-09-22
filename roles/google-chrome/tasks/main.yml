@@ -3,3 +3,8 @@
     name: google-chrome-stable
   when: "ansible_os_family == 'RedHat'"
   become: yes
+
+- name: Install google chrome stable on Archlinux
+  kewlfft.aur.aur:
+    name: google-chrome
+  when: "ansible_os_family == 'Archlinux'"

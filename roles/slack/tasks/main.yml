@@ -1,7 +1,11 @@
-- name: Install Slack on Redhat
-  dnf:
-    name:
-  when: "ansible_os_family == 'RedHat'"
-  become: yes
-    wget https://downloads.slack-edge.com/releases/linux/4.21.1/prod/x64/slack-4.21.1-0.1.fc21.x86_64.rpm
-    sudo dnf install ./slack-4.21.1-0.1.fc21.x86_64.rpm
+# - name: Install Slack on Redhat
+#   dnf:
+#     name:
+#   when: "ansible_os_family == 'RedHat'"
+#   become: yes
+# wget https://downloads.slack-edge.com/releases/linux/4.21.1/prod/x64/slack-4.21.1-0.1.fc21.x86_64.rpm
+# sudo dnf install ./slack-4.21.1-0.1.fc21.x86_64.rpm
+
+- name: Install Slack on Archlinux
+  kewlfft.aur.aur:
+    name: slack-desktop

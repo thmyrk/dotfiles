@@ -22,7 +22,16 @@
   when: "ansible_os_family == 'RedHat'"
   become: yes
 
+- name: Install docker on Archlinux
+  pacman:
+    name:
+      - docker
+      - docker-compose
+  when: "ansible_os_family == 'Archlinux'"
+  become: yes
+
 - name: Start docker service
   systemd:
     state: started
     name: docker
+  become: yes

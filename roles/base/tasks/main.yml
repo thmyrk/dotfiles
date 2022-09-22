@@ -9,8 +9,25 @@
       - unzip
       - git
       - git-gui
+      - gpg
       - qbittorrent
   when: "ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Install common tools on Archlinux
+  pacman:
+    name:
+      - curl
+      - wget
+      - htop
+      - pass
+      - jq
+      - unzip
+      - git
+      - tk
+      - qbittorrent
+      - vlc
+  when: "ansible_os_family == 'Archlinux'"
   become: yes
 
 - name: Register repolist
@@ -21,12 +38,12 @@
 - name: Register fedora version
   shell: rpm -E %fedora
   register: fedoraversion
-  when: "repolist.stdout == '0' and ansible_os_family == 'RedHat'"
+  when: "ansible_os_family == 'RedHat' and repolist.stdout == '0'"
 
 - name: Enable RPMFusion
   shell: "dnf install -y --refresh https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedoraversion.stdout }}.noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedoraversion.stdout }}.noarch.rpm"
   become: yes
-  when: "repolist.stdout == '0' and ansible_os_family == 'RedHat'"
+  when: "ansible_os_family == 'RedHat' and repolist.stdout == '0'"
   register: output
 
 - name: Install Accelerated video decoding packages
@@ -63,9 +80,29 @@
   become: yes
   when: "ansible_os_family == 'RedHat'"
 
-- name: Install 1password
+- name: Install 1password on RedHat
   dnf:
     name: 1password
     enablerepo: 1password
   become: yes
   when: "ansible_os_family == 'RedHat'"
+
+- name: Register 1Password GPG key presence
+  shell: gpg -k | grep -c 1Password; true
+  register: gpgkey
+
+- name: Add 1password GPG key
+  shell: curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+  when: "ansible_os_family == 'Archlinux' and gpgkey.stdout == '0'"
+
+- name: Install 1password on Archlinux
+  kewlfft.aur.aur:
+    name:
+      - 1password
+  when: "ansible_os_family == 'Archlinux'"
+
+- name: Install postman on Archlinux
+  kewlfft.aur.aur:
+    name:
+      - postman-bin
+  when: "ansible_os_family == 'Archlinux'"

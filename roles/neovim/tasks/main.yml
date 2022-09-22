@@ -1,14 +1,34 @@
-- name: Gather the package facts
-  package_facts:
-
 - name: Install Neovim on Redhat
   dnf: "{{ neovim }}"
-  when: "neovim not in ansible_facts.packages and ansible_os_family == 'RedHat'"
+  when: "ansible_os_family == 'RedHat'"
   become: yes
+
+- name: Install Neovim on Archlinux
+  pacman:
+    name: neovim
+  when: "ansible_os_family == 'Archlinux'"
+  become: yes
+
+- name: Ensure Nvim config path exists
+  file:
+    path: ~/.config/nvim/
+    state: directory
+
+- name: Link vim config to Neovim
+  file:
+    src: ~/Workspace/dotfiles/.vimrc
+    dest: ~/.config/nvim/init.vim
+    state: link
 
 - name: Install Powerline fonts on Redhat
   dnf: "{{ powerlinefonts }}"
-  when: "powerlinefonts not in ansible_facts.packages and ansible_os_family == 'RedHat'"
+  when: "ansible_os_family == 'RedHat'"
+  become: yes
+
+- name: Install Powerline fonts on Archlinux
+  pacman:
+    name: powerline-fonts
+  when: "ansible_os_family == 'Archlinux'"
   become: yes
 
 - name: Check if vim-plug is installed
@@ -19,11 +39,6 @@
 - name: Install vim-plug
   shell: sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   when: vimplug.stat.exists == False
-
-# - name: Run Neovim configuration
-#   shell:
-#     cmd: nvim +'source nvim_config.vim'
-#     executable: /usr/bin/fish
 
 - name: Check if DroidSansMono Nerd Font is installed
   stat:

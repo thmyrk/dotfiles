@@ -5,3 +5,12 @@
       - the_silver_searcher
   become: yes
   when: "ansible_os_family == 'RedHat'"
+
+- name: Install fzf and silver-searcher on Archlinux
+  pacman:
+    name: 
+      - fzf
+      - the_silver_searcher
+  become: yes
+  when: "ansible_os_family == 'Archlinux'"
+

@@ -68,8 +68,24 @@
     executable: /usr/bin/fish
   when: rubyplugin.stdout == "0"
 
-# - name: Check if Ruby is installed
-#   shell:
-#     cmd: asdf current 2>&1 | grep -cE "ruby.*No version is set"; true
-#     executable: /usr/bin/fish
-#   register: nodejs
+- name: Check if Ruby is installed
+  shell:
+    cmd: asdf current 2>&1 | grep -cE "ruby.*No version is set"; true
+    executable: /usr/bin/fish
+  register: ruby
+
+- name: Install latest Ruby
+  shell:
+    cmd: asdf install ruby latest
+    executable: /usr/bin/fish
+  when: ruby.stdout != "0"
+
+- name: Set global Ruby
+  shell:
+    cmd: asdf global ruby latest
+    executable: /usr/bin/fish
+  when: ruby.stdout != "0"
+
+- name: Install solargraph
+  shell:
+    cmd: gem install solargraph
