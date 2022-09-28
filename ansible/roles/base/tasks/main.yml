@@ -27,6 +27,7 @@
       - tk
       - qbittorrent
       - vlc
+      - steam
   when: "ansible_os_family == 'Archlinux'"
   become: yes
 
