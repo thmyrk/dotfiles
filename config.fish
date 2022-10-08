@@ -6,3 +6,4 @@ source ~/.asdf/asdf.fish
 
 set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.ebcli-virtual-env/executables
+set -x EDITOR nvim
