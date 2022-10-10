@@ -42,6 +42,7 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'mileszs/ack.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -170,7 +171,7 @@ nnoremap <leader>r9 :tabm 9<CR>
 set number
 " set relativenumber
 set autoindent
-set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
 set wildmenu
 set wildmode=list:longest,full
 set complete-=i
