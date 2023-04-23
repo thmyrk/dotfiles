@@ -1,3 +1,3 @@
 function gitp
-  pass ssh --clip && git push origin HEAD
+  git push origin HEAD
 end

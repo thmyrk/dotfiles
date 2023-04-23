@@ -1,3 +1,3 @@
 function gitf
-  pass ssh --clip && git fetch
+  git fetch
 end
