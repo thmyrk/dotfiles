@@ -27,6 +27,7 @@ Plug 'luochen1990/rainbow'
 Plug 'tommcdo/vim-exchange'
 Plug 't9md/vim-ruby-xmpfilter'
 Plug 'tpope/vim-rails'
+Plug 'vim-test/vim-test'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-endwise'
 Plug 'posva/vim-vue'
@@ -68,6 +69,16 @@ let g:rainbow_active = 1
 
 filetype plugin indent on
 syntax enable
+
+" --- vim-test ---
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+
+let test#strategy = "neovim"
+let g:test#neovim#start_normal = 1 " If using neovim strategy
 
 " --- Seeing is believing ---
 let g:xmpfilter_cmd = "seeing_is_believing"
@@ -169,6 +180,7 @@ nnoremap <leader>r8 :tabm 8<CR>
 nnoremap <leader>r9 :tabm 9<CR>
 
 set number
+set mouse=
 " set relativenumber
 set autoindent
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
