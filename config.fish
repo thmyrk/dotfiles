@@ -8,6 +8,7 @@ set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.ebcli-virtual-env/executables
 set -x PATH $PATH ~/go/bin
 set -x PATH $PATH ~/.cargo/bin
+set -x PATH $PATH ~/.local-python-environment/bin
 set -x EDITOR nvim
 
 thefuck --alias | source
