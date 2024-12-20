@@ -1,18 +1,27 @@
 let mapleader = ","
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype on
 
 " --- Vim plug ---
 call plug#begin("~/.config/nvim/bundle/")
 
+" LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+"
+
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-startify'
 " Plug 'vim-syntastic/syntastic'
-Plug 'dense-analysis/ale'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
@@ -46,6 +55,56 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
+set number
+set mouse=
+" set relativenumber
+set autoindent
+set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
+set wildmenu
+set wildmode=list:longest,full
+set complete-=i
+set lazyredraw
+set list!
+set incsearch
+set laststatus=2
+set ruler
+set scrolloff=2
+set sidescrolloff=5
+set display+=lastline
+set encoding=utf-8
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set formatoptions+=j
+set shell=/usr/bin/fish
+set sessionoptions-=options
+set ignorecase
+
+" Cursor highlighting
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline cursorcolumn
+set colorcolumn=150
+
+" Line Wrapping
+set nowrap
+set linebreak " Wrap at word
+set showbreak=…
+
+" Autosave
+set autowrite
+set autoread
+
+" Fold
+set foldmethod=syntax
+set nofoldenable
+
+" Mappings
+imap jj <Esc>
+nmap <leader>s :cal cursor(0, len(getline('.')) / 2)<CR>
+nmap <leader>a :cal cursor(0, len(getline('.')) / 4)<CR>
+nmap <leader>d :cal cursor(0, (len(getline('.')) / 4) * 3)<CR>
+nnoremap <CR> :noh<CR>
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " --- CtrlP ---
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
@@ -55,9 +114,6 @@ nmap <leader>t :CtrlPTag<CR>
 
 " --- Fern ---
 nmap <C-n> :Fern . -reveal=% -drawer<CR>
-
-" --- Ale ---
-let g:ale_linters = {'ruby': ['ruby', 'rubocop', 'brakeman', 'debride', 'reek', 'solargraph', 'standardrb'] }
 
 " --- Gruvbox ---
 colorscheme gruvbox
@@ -158,61 +214,6 @@ nnoremap <leader>r7 :tabm 7<CR>
 nnoremap <leader>r8 :tabm 8<CR>
 nnoremap <leader>r9 :tabm 9<CR>
 
-set number
-set mouse=
-" set relativenumber
-set autoindent
-set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
-set wildmenu
-set wildmode=list:longest,full
-set complete-=i
-set lazyredraw
-set list!
-set incsearch
-set laststatus=2
-set ruler
-set scrolloff=2
-set sidescrolloff=5
-set display+=lastline
-set encoding=utf-8
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-set formatoptions+=j
-set shell=/usr/bin/fish
-set sessionoptions-=options
-set ignorecase
-
-if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-  set t_Co=16
-endif
-
-" Cursor highlighting
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
-set cursorline cursorcolumn
-set colorcolumn=150
-
-" Line Wrapping
-set nowrap
-set linebreak " Wrap at word
-set showbreak=…
-
-" Autosave
-set autowrite
-set autoread
-
-" Fold
-set foldmethod=syntax
-set nofoldenable
-
-" Mappings
-imap jj <Esc>
-nmap <C-g> :TagbarToggle<CR>
-nmap <leader>s :cal cursor(0, len(getline('.')) / 2)<CR>
-nmap <leader>a :cal cursor(0, len(getline('.')) / 4)<CR>
-nmap <leader>d :cal cursor(0, (len(getline('.')) / 4) * 3)<CR>
-nnoremap <CR> :noh<CR>
-nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
-
 function! <SID>StripTrailingWhitespaces()
   if mode() == 'n'
     " Preparation: save last search, and cursor position.
@@ -227,6 +228,7 @@ function! <SID>StripTrailingWhitespaces()
   endif
 endfunction
 
+" File <-> language associations
 if has('autocmd')
   augroup buffer_filetype_autocmds
     au!
