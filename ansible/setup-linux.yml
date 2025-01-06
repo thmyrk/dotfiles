@@ -12,11 +12,11 @@
     - [ "vars/{{ ansible_os_family }}.yml" ]
   roles:
     - base
+    - neovim
     - fish
     - silver-searcher
     - google-chrome
     - docker
     - asdf
-    - neovim
     - slack
     - aws

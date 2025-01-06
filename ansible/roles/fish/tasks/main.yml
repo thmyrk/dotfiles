@@ -6,7 +6,7 @@
 
 - name: Install Fish on Archlinux
   pacman:
-    name: fish
+    name: [ fish, thefuck ]
   when: "ansible_os_family == 'Archlinux'"
   become: yes
 

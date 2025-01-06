@@ -16,8 +16,14 @@
 
 - name: Link vim config to Neovim
   file:
-    src: ~/Workspace/dotfiles/.vimrc
-    dest: ~/.config/nvim/init.vim
+    src: ~/Workspace/dotfiles/nvim_init.lua
+    dest: ~/.config/nvim/init.lua
+    state: link
+
+- name: Link vim config to Neovim
+  file:
+    src: ~/Workspace/dotfiles/nvim_vimrc.vim
+    dest: ~/.config/nvim/vimrc.vim
     state: link
 
 - name: Install Powerline fonts on Redhat

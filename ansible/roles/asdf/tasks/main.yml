@@ -86,9 +86,9 @@
     executable: /usr/bin/fish
   when: ruby.stdout != "0"
 
-- name: Install solargraph
-  shell:
-    cmd: gem install solargraph
+# - name: Install solargraph
+#   shell:
+#     cmd: gem install solargraph
 
 - name: Check if golang plugin has been added
   shell:

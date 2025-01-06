@@ -1,6 +1,7 @@
 - name: Install common tools on Redhat
   dnf:
     name:
+      - vim
       - curl
       - wget
       - htop
@@ -11,12 +12,14 @@
       - git-gui
       - gpg
       - qbittorrent
+      - signal-desktop
   when: "ansible_os_family == 'RedHat'"
   become: yes
 
 - name: Install common tools on Archlinux
   pacman:
     name:
+      - vim
       - curl
       - wget
       - htop
@@ -28,6 +31,8 @@
       - qbittorrent
       - vlc
       - steam
+      - signal-desktop
+    update_cache: true
   when: "ansible_os_family == 'Archlinux'"
   become: yes
 
