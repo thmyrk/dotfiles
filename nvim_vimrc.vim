@@ -19,7 +19,14 @@ Plug 'hrsh7th/vim-vsnip'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'ctrlpvim/ctrlp.vim'
+
+" --- File search ---
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'BurntSushi/ripgrep'
+Plug 'nvim-telescope/telescope-fzf-native.nvim'
+"
+
 Plug 'mhinz/vim-startify'
 " Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-commentary'
@@ -50,6 +57,7 @@ Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/vim-glyph-palette'
 Plug 'mileszs/ack.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -105,12 +113,12 @@ nmap <leader>d :cal cursor(0, (len(getline('.')) / 4) * 3)<CR>
 nnoremap <CR> :noh<CR>
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-" --- CtrlP ---
+" --- Telescope ---
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_map = '<leader>f'
-nmap <leader>t :CtrlPTag<CR>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " --- Fern ---
 nmap <C-n> :Fern . -reveal=% -drawer<CR>
@@ -134,15 +142,6 @@ nmap <silent> <leader>tv :TestVisit<CR>
 
 let test#strategy = "neovim"
 let g:test#neovim#start_normal = 1 " If using neovim strategy
-
-" --- Seeing is believing ---
-let g:xmpfilter_cmd = "seeing_is_believing"
-autocmd FileType ruby nmap <buffer> <leader>z <Plug>(seeing_is_believing-mark)
-autocmd FileType ruby xmap <buffer> <leader>z <Plug>(seeing_is_believing-mark)
-autocmd FileType ruby nmap <buffer> <leader>c <Plug>(seeing_is_believing-clean)
-autocmd FileType ruby xmap <buffer> <leader>c <Plug>(seeing_is_believing-clean)
-autocmd FileType ruby nmap <buffer> <leader>x <Plug>(seeing_is_believing-run)
-autocmd FileType ruby xmap <buffer> <leader>x <Plug>(seeing_is_believing-run)
 
 " --- vim-closetag ---
 " These are the file extensions where this plugin is enabled.
@@ -181,6 +180,14 @@ set updatetime=750
 " Fern
 let g:fern#default_hidden = 1
 let g:fern#renderer = "nerdfont"
+
+" Glyph Palette
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType fall-list call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
 
 " Silver searcher; Ag; Ack
 let g:ackprg = 'ag --nogroup --column'
